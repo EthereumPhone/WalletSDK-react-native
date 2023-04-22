@@ -6,6 +6,8 @@
 npm install ethos-walletsdk
 ```
 
+Also make sure to change the `minSdkVersion` to `27` in `android/build.gradle` in your react native project.
+
 ## Usage
 
 ### How to import SDK
