@@ -1,27 +1,56 @@
-# walletsdk-ethos
-
-WalletSDK for ethOS for react native
+# WalletSDK for React Native
 
 ## Installation
 
 ```sh
-npm install walletsdk-ethos
+npm install ethos-walletsdk
 ```
 
 ## Usage
 
+### How to import SDK
+
 ```js
-import { multiply } from 'walletsdk-ethos';
-
-// ...
-
-const result = await multiply(3, 7);
+import { isEthOS, getAddress, SignMessageParams, signMessage, TransactionParams, sendTransaction } from 'walletsdk-ethos';
 ```
 
-## Contributing
+### How to know if you're on ethOS
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+```js
+isEthOS().then((isEthOS) => {
+    if (isEthOS) {
+        setResult("It's EthOS");
+    } else {
+        setResult("It's not EthOS");
+    }
+});
+```
 
+### How to sign a message
+
+```js
+// How to sign Message
+var params: SignMessageParams = {
+    message: 'Hello World',
+};
+signMessage(params).then((signature) => {
+    console.log("signature: " + signature)
+});
+```
+
+### How to send a Transaction
+
+```js
+// How to send send Transactions
+var params: TransactionParams = {
+    to: "",
+    value: "1000000000000000000", // 1 eth in wei
+    data: ""
+}
+sendTransaction(params).then((txHash) => {
+    console.log("txHash: " + txHash)
+});
+```
 ## License
 
 MIT

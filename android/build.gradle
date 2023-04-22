@@ -64,6 +64,7 @@ android {
 repositories {
   mavenCentral()
   google()
+  maven { url 'https://jitpack.io' }
 }
 
 def kotlin_version = getExtOrDefault("kotlinVersion")
@@ -74,6 +75,8 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'org.web3j:core:4.8.8-android'
+  implementation 'com.github.EthereumPhone:WalletSDK:0.0.8'
 }
 
 if (isNewArchitectureEnabled()) {
