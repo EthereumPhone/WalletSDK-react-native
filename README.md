@@ -1,5 +1,9 @@
 # WalletSDK for React Native
 
+## Important
+If you are using expo, you need to use this SDK: [expo-walletsdk](https://github.com/EthereumPhone/walletsdk-expo).
+This SDK won't work with expo.
+
 ## Installation
 
 ```sh
