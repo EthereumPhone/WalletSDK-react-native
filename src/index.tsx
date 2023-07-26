@@ -33,21 +33,6 @@ export function isEthOS(): Promise<boolean> {
   return WalletsdkEthos.isEthOS();
 }
 
-export interface TransactionParams {
-  to: string;
-  value: string;
-  data: string;
-  gasPrice?: string | null;
-  gasAmount?: string;
-  chainId?: number;
-}
-
-export function sendTransaction(params: TransactionParams): Promise<String> {
-  isAndroid();
-  const { to, value, data, gasPrice = null, gasAmount = "21000", chainId = 1 } = params;
-  return WalletsdkEthos.sendTransaction(to, value, data, gasPrice, gasAmount, chainId);
-}
-
 export interface SignMessageParams {
   message: string;
   type?: string;

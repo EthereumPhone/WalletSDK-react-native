@@ -6,17 +6,14 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import android.content.Context 
 import android.annotation.SuppressLint
-import org.web3j.protocol.Web3j
-import org.web3j.protocol.core.DefaultBlockParameterName
-import org.web3j.protocol.http.HttpService
 import java.util.concurrent.CompletableFuture
-import org.ethereumphone.walletsdk.WalletSDK
+import com.walletsdkethos.WalletSDK
 
 class WalletsdkEthosModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
 
   val reactContext: ReactApplicationContext = reactContext
-  val wallet = WalletSDK(reactContext)
+  
 
   override fun getName(): String {
     return NAME
@@ -24,21 +21,18 @@ class WalletsdkEthosModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun isEthOS(promise: Promise) {
-    promise.resolve(wallet.isEthOS())
-  }
-
-  @ReactMethod
-  fun sendTransaction(to: String, value: String, data: String, gasPrice: String? = null, gasAmount: String = "21000", chainId: Int = 1, promise: Promise) {
-    promise.resolve(wallet.sendTransaction(to, value, data, gasPrice, gasAmount, chainId).get())
+    promise.resolve(reactContext.getSystemService("wallet") != null)
   }
 
   @ReactMethod
   fun signMessage(message: String, type: String = "personal_sign", promise: Promise) {
+    val wallet = WalletSDK(reactContext)
     promise.resolve(wallet.signMessage(message, type).get())
   }
 
   @ReactMethod
   fun getAddress(promise: Promise) {
+    val wallet = WalletSDK(reactContext)
     promise.resolve(wallet.getAddress())
   }
 
